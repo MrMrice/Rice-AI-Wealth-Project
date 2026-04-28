@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wealth Manager Agent</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f4f5f7; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+    .card { background: white; border-radius: 12px; padding: 48px; max-width: 480px; width: 100%; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .logo { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #888; margin-bottom: 16px; }
+    h1 { font-size: 1.6rem; font-weight: 700; color: #1a1a2e; margin-bottom: 8px; }
+    p { color: #666; font-size: 0.92rem; line-height: 1.6; margin-bottom: 32px; }
+    label { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #888; display: block; margin-bottom: 8px; }
+    .upload-box { border: 2px dashed #ddd; border-radius: 8px; padding: 24px; text-align: center; margin-bottom: 24px; cursor: pointer; transition: border-color 0.2s; }
+    .upload-box:hover { border-color: #1a1a2e; }
+    .upload-box input { display: none; }
+    .upload-box .icon { font-size: 2rem; margin-bottom: 8px; }
+    .upload-box .hint { font-size: 0.85rem; color: #888; }
+    .upload-box .filename { font-size: 0.88rem; color: #1a1a2e; font-weight: 600; margin-top: 6px; }
+    button { width: 100%; background: #1a1a2e; color: white; border: none; padding: 14px; font-size: 0.95rem; font-weight: 600; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
+    button:hover { background: #2c2c4e; }
+    .note { font-size: 0.78rem; color: #aaa; text-align: center; margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">Wealth Manager Agent</div>
+    <h1>Trading Plan Generator</h1>
+    <p>Upload your portfolio CSV to generate a tax-aware trading plan with live analyst ratings and sector rebalancing recommendations.</p>
+
+    <form action="/generate" method="post" enctype="multipart/form-data" id="form">
+      <label>Portfolio File</label>
+      <div class="upload-box" onclick="document.getElementById('portfolio').click()">
+        <div class="icon">📁</div>
+        <div class="hint">Click to upload your portfolio CSV or Excel file</div>
+        <div class="filename" id="filename"></div>
+        <input type="file" id="portfolio" name="portfolio" accept=".csv,.xlsx,.xls" required onchange="document.getElementById('filename').textContent = this.files[0].name">
+      </div>
+      <button type="submit">Generate Trading Plan →</button>
+    </form>
+    <div class="note">Report takes ~20 seconds to generate</div>
+  </div>
+</body>
+</html>

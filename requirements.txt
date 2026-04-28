@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+anthropic
+yfinance
+pandas
+jinja2
+python-multipart
+openpyxl
